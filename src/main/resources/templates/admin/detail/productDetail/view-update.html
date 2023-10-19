@@ -1,0 +1,139 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/indexAdmin :: dynamic(~{:: main})}">
+
+<body>
+<main>
+    <h3>Cập Nhật Chi Tiết Sản Phẩm</h3>
+    <form th:action="@{/admin/productdetail/update}" th:object="${detailProductDetail}" method="post"
+          enctype="multipart/form-data">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <label>ID Chi Tiết Sản Phẩm: </label>
+                <input type="text" class="form-control" name="idProductDetail" th:field="*{idProductDetail}"
+                       readonly/>
+            </div>
+        </div>
+        <div class="col-sm-12">
+            <div class="form-group">
+                <div class="col-sm-2">
+                    <label>Sản Phẩm: </label>
+                    <select name="product" class="form-control">
+                        <option th:each="listProduct : ${listProduct}"
+                                th:value="${listProduct.idProduct}"
+                                th:text="${listProduct.nameProduct}"
+                                th:selected="${detailProductDetail.product.idProduct == listProduct.idProduct}">
+                        </option>
+                    </select>
+                </div>
+                <div class="col-sm-4">
+                    <div class="col-sm-6">
+                        <label>Màu Sắc: </label>
+                        <select name="color" class="form-control">
+                            <option value="">Chọn Màu Sắc</option>
+                            <option th:each="listColor : ${listColor}"
+                                    th:value="${listColor.idColor}"
+                                    th:text="${listColor.codeColor}"
+                                    th:selected="${detailProductDetail.color.idColor == listColor.idColor}">
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-sm-6">
+                        <label></label>
+                        <p id="detailColorForCombobox" class="form-control"></p>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <label>Kích Cỡ: </label>
+                    <select name="size" class="form-control">
+                        <option th:each="listSize : ${listSize}"
+                                th:value="${listSize.idSize}"
+                                th:text="${listSize.nameSize}"
+                                th:selected="${detailProductDetail.size.idSize == listSize.idSize}">
+                        </option>
+                    </select>
+                </div>
+                <div class="col-sm-2">
+                    <label>Nhà Sản Xuất: </label>
+                    <select name="producer" class="form-control">
+                        <option th:each="listProducer : ${listProducer}"
+                                th:value="${listProducer.idProducer}"
+                                th:text="${listProducer.nameProducer}"
+                                th:selected="${detailProductDetail.producer.idProducer == listProducer.idProducer}">
+                        </option>
+                    </select>
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <label>Danh Mục: </label>
+                        <select name="category" class="form-control">
+                            <option th:each="category : ${listCategory}"
+                                    th:value="${category.idCategory}"
+                                    th:text="${category.nameCategory}"
+                                    th:selected="${detailProductDetail.category.idCategory == category.idCategory}">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12">
+            <br>
+        </div>
+        <div class="col-sm-12">
+            <div class="form-group">
+                <div class="col-sm-2">
+                    <label>Số Lượng Tồn: </label>
+                    <input type="text" class="form-control" name="quantity" th:field="*{quantity}"
+                           placeholder="Nhập Số Lượng Sản Phẩm"/>
+                </div>
+                <div class="col-sm-2">
+                    <label>Giá Nhập: </label>
+                    <input type="text" class="form-control" name="purchasePrice" th:field="*{purchasePrice}"
+                           placeholder="Nhập Giá Mua Vào Của Sản Phẩm"/>
+                </div>
+                <div class="col-sm-2">
+                    <label>Giá Bán: </label>
+                    <input type="text" class="form-control" name="costPrice" th:field="*{costPrice}"
+                           placeholder="Nhập Giá Bán Của Sản Phẩm"/>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12">
+            <br>
+        </div>
+        <div class="col-sm-12">
+            <div class="form-group">
+                <div class="col-sm-9">
+                    <label>Ảnh Sản Phẩm: </label>
+                    <div class="col-sm-7">
+                        <input type="file" id="imageInput" class="form-control" name="file" accept="images/*"/>
+                    </div>
+                    <div class="col-sm-5">
+                        <img id="previewImage" style="width: 200px; height: 200px;"
+                             th:src="@{'/images/' + ${detailProductDetail.images}}" alt=""/>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <label>Trạng Thái: </label>
+                    <select name="status" class="form-control">
+                        <option value="1" th:selected="${detailProductDetail.status == 1}">Đang Còn Hàng</option>
+                        <option value="0" th:selected="${detailProductDetail.status == 0}">Tạm Thời Hết Hàng</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12">
+            <br>
+        </div>
+        <div class="col-sm-12">
+            <div class="form-group">
+                <div class="col-sm-1">
+                    <button type="submit" class="btn btn-primary"><i class="bi bi-floppy-fill"></i> Lưu Lại</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</main>
+</body>
+
+</html>

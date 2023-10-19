@@ -1,0 +1,46 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" th:fragment="dynamic(main)">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <!-- AngularJS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+    <!--Icon Bootstrap-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <title>Trang Chủ</title>
+</head>
+
+<body class="container">
+<nav class="row">
+    <div th:replace="/layout/_menu.html"></div>
+</nav>
+<header class="row">
+    <div th:replace="/layout/_slideshow.html"></div>
+</header>
+<div class="row">
+    <article class="col-sm-9">
+        <div th:replace="${main}"></div>
+    </article>
+    <aside class="col-sm-3">
+        <div th:replace="/layout/_cart-info.html"></div>
+        <div th:replace="/layout/_category.html"></div>
+    </aside>
+</div>
+<footer class="row">
+</footer>
+</body>
+
+</html>
